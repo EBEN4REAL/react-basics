@@ -104,6 +104,7 @@ class  Form extends React.Component{
             name: this.state.formDetails.name.value,
             address: this.state.formDetails.address.value,
             email: this.state.formDetails.email.value,
+            country: this.state.formDetails.country.value
         }
         console.log(formData);
         axios.post("https://reactburgerapp-cc275.firebaseio.com/contacts.json", formData)
