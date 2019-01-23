@@ -1,0 +1,8 @@
+.frame{
+    border: 1px soild grey;
+    padding: 30px;
+    box-shadow: 0px 2px 2px  1px  #ccc;
+    width: 200px;
+    margin: 20px;
+    display: inline-block;
+}

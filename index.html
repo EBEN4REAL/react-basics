@@ -1,0 +1,670 @@
+<html>
+
+<head>
+    <link href="index.css" rel="stylesheet">
+
+    <div class="outer-box">
+        <div class="inner-main-div-top">
+            <div class="inner-circle"> </div>
+            <div class="inner-circle"> </div>
+        </div>
+        <div class="inner-main-div-bottom">
+            <div class="inner-circle"> </div>
+            <div class="inner-circle"> </div>
+        </div>
+        <div class="inner-main-div-bottom">
+            <div class="inner-circle"> </div>
+            <div class="inner-circle"> </div>
+        </div>
+        
+    </div>
+   
+</head>
+
+<body>
+    
+    <div>
+        
+    </div>
+    
+    
+
+    <script>
+        
+
+        console.log("Algorithms Practice");
+
+        // ANAGRAM PRACTICE
+        function validAnagram(first, second) {
+            if (first.length !== second.length) {
+                return false;
+            }
+
+            const lookup = {};
+
+            for (let i = 0; i < first.length; i++) {
+                let letter = first[i];
+                // if letter exists, increment, otherwise set to 1
+                lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+            }
+            console.log(lookup)
+
+            for (let i = 0; i < second.length; i++) {
+                let letter = second[i];
+                // can't find letter or letter is zero then it's not an anagram
+                if (!lookup[letter]) {
+                    return false;
+                } else {
+                    lookup[letter] -= 1;
+                }
+            }
+
+            return true;
+        }
+        // OR
+        // {a: 0, n: 0, g: 0, r: 0, m: 0,s:1}
+        console.log(validAnagram('anagrams', 'nagaramn'));
+        let validanagram = (str1, str2) => {
+            if (str1.length !== str2.length) {
+                return false;
+            }
+            for (let i = 0; i < str1.length; i++) {
+                let index = str2.indexOf(str1[i]);
+                if (index === -1) {
+                    return false;
+                }
+                str2.slice(index, 1);
+
+            }
+            return true;
+        }
+        let str1 = "anagrams";
+        let str2 = "nagaramn";
+        console.log(validanagram(str1, str2));
+
+        // SUM TO ZERO ARRAY
+        console.log("SUM TO ZERO ARRAY");
+        let sumToZero = (arr) => {
+            for(let i = 0; i < arr.length; i++){
+                for(let j = 0; j < arr.length; j++){
+                    let getSum = arr[i] + arr[j];
+                    if(getSum === 0){
+                        return [arr[i], arr[j]];
+                    }
+                }
+            }
+
+            /* OR */
+
+            let left = 0;
+            let right = arr.length - 1;
+            while(left < right){
+                let sum = arr[left] + arr[right];
+                if(sum === 0){
+                    return [arr[left], arr[right]];
+                }else if(sum > 0){
+                    right --;
+                }else{
+                    left ++;
+                }
+            }
+            
+        }
+        console.log(sumToZero([-4,-2,-1,0,1,2,5,5]));
+        
+        /* // GET UMBER OF UNIQUE VALUES */
+        console.log("UNIQUE VALUES ARRAY");
+        let getUniqueValues = (arr) => {
+            let valuesArrr = [];
+            for(let i = 0; i < arr.length; i++){
+                valuesArrr.push(arr[i]);
+                if(valuesArrr[arr[i]]){
+                    index = valuesArrr.indexOf(arr[i]);
+                    if(index !== -1){
+                        valuesArrr.splice(index , 1);
+                    }
+                }
+            }
+            return valuesArrr.length;
+        }
+       console.log(getUniqueValues([1,1,2]));
+
+    //    OR
+
+    let countUniqueValues = (arr) => {
+        let i = 0;
+        for(let j = 1; j < arr.length; j++){
+            if(arr[i] !== arr[j]){
+                console.log(i);
+                i++;
+                console.log(i);
+                arr[i] = arr[j];
+            }
+            console.log(i,j);
+        }
+        return i + 1;
+    }
+    console.log(countUniqueValues([1,2,1,2,3,4,5,6,6,7,7,7,7,8]));
+
+    console.log("MAX SUB ARR");
+    // SLIDING WINDOW PATTERN
+    let maxSubArrSum= (subArr, n) => {
+        if(n > subArr.length){
+            return null;
+        }
+        var max = -Infinity;
+        for(let i = 0; i < subArr.length; i++){
+            temp = 0;
+            for(let j = 0; j < n; j++){
+                console.log(i,j);
+                temp += subArr[i + j];
+            }
+            if(temp > max){
+                max = temp;
+            }
+        }
+        return max;
+    }
+    console.log(maxSubArrSum([1, 2, 5, 2, 8, 1, 5], 2));
+
+    // OR
+    function maxSubArr(arr, num){
+        let maxSum = 0;
+        let tempSum = 0;
+        if (arr.length < num) return null; 
+        for (let i=0; i < num; i++) {
+            maxSum +=arr[i]; 
+            console.log(maxSum);
+        }
+        tempSum = maxSum; 
+        for (let i=num; i < arr.length; i++) {
+            tempSum = tempSum - arr[i - num] + arr[i]; 
+            console.log(tempSum);
+            maxSum = Math.max(maxSum, tempSum); 
+        } 
+        return maxSum;
+    }
+
+    console.log(maxSubArr([1, 2, 5, 2, 8, 1, 5], 2));
+
+    console.log("Alice ande Bob array");
+
+    // RECURSION
+    console.log("RECURSION");
+    let countDownNumbers = (n) => {
+        if(n <= 0){
+            console.log("ALL DONE");
+            return;
+        }
+        console.log(n);
+        n--;
+        countDownNumbers(n);
+    }
+    console.log(countDownNumbers(5));
+
+    // SUM RANGE 
+    let sumRange = (n) => {
+        if(n === 1) return 1;
+        return n + (sumRange(n - 1)); 
+    }
+    console.log(sumRange(4));
+
+    //  FACTORIAL EXAMPLE
+    // Naive method 
+    let findFactorial = (num) => {
+        let mul = 1;
+       for(let i = num; i > 0; i--){
+           mul *= i
+       }
+       return mul;
+    }
+    console.log(findFactorial(4));
+
+    //  Recursion method
+    let findTheFatorial = (n) => {
+        if(n === 1) return 1;
+        return n * findFactorial(n - 1);
+    }
+    console.log(findFactorial(4));
+
+    // Collect Odd values
+    // Naive solution
+    let getodd = (arr) => {
+        let oddArr = [];
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i] % 2 !== 0){
+                oddArr.push(arr[i]);
+            }
+        }
+        return oddArr;
+    }
+    console.log(getodd([1,2,3,4,5,6,7,8]));
+    // Recursive solution
+    let collectOddValues = (arr) => {
+        
+        let oddArr = [];
+        let helper = (helperInput) => {
+            if(helperInput.length === 0) return;
+            if(helperInput[0] % 2 !== 0){
+                oddArr.push(helperInput[0]);
+            }
+            console.log(helperInput);
+            helper(helperInput.splice(1));
+        }
+        helper(arr);
+        return oddArr;
+    }
+    console.log(collectOddValues([1,2,3,4,5,6,7,8]))
+
+    //  Using pue recursive solution
+    function collectOddNumbers(arr){
+        let newArr = [];
+
+        if(arr.length === 0) {
+            return newArr;
+        }
+
+        if(arr[0] % 2 !== 0){
+            newArr.push(arr[0]);
+        }
+
+        newArr = newArr.concat(collectOddValues(arr.slice(1)));
+        return newArr;
+    }
+
+    console.log(collectOddNumbers([1,2,3,4]))
+
+    // Linear search algorithms 
+    let linearsearch = (arr,n) => {
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i] === n) return i;
+        }
+        return -1;
+
+        //  OR
+
+        arr.forEach((element,index) => {
+            if(element === n){
+                console.log(index);
+            }
+        });
+        if(arr.indexOf(n) === -1 ) return -1;
+    }
+    console.log(linearsearch([1,2,3,4,5,6,7,8,9] , 23));
+
+    // BINARY SEARCH
+
+    // Divide and conquer
+
+    let binarySearch = (arr, n) => {
+        start = 0;
+        end = arr.length - 1;
+        let middle = Math.floor((start + end) / 2);
+        while(arr[middle] !== n && start <= end){
+            console.log(start, middle, end);
+            if(n < arr[middle]){
+                end = middle - 1;
+                console.log(start);
+            }else{
+                start = middle + 1;
+                console.log(start);
+            }
+            middle = Math.floor((start + end) / 2);
+        }
+        if(arr[middle] === n) return middle;
+        return -1;
+    }
+    console.log(binarySearch([2,5,6,9,13,15,28,30], 30));
+
+    //  NAIE STRING SEARCH
+    let stringSearch = (longStr, shortStr) => {
+        let count = 0;
+        for(let i = 0; i < longStr.length; i++){
+            for(let j = 0; j < shortStr.length; j++){
+                if(longStr[i + j] !== shortStr[j]) break;
+                console.log(longStr[i + j] , shortStr[j]);
+                if(j === shortStr.length - 1) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    console.log(stringSearch("omgljle omg meomg" , "omg"));
+
+        /* SORTING ALGORITHMS */
+    function numberCompare(num1 , num2){
+        return num1 - num2;
+    }
+    let arr = [6,4,15,10];
+    console.log(arr.sort(numberCompare));
+
+    function compareByLen(str1,str2){
+        console.log(str1.length, str2.length);
+        console.log(str1.length - str2.length);
+        return str1.length - str2.length;
+    }
+console.log(["steele", "colt", "Data structures", "Algorithms"].sort(compareByLen));
+
+/* BUBBLE SORT */
+let bubbleSort = (arr) => {   
+    let noSwaps;
+    for(let i=arr.length; i>0; i--){
+        noSwaps = true;
+        for(let j=0; j<i-1; j++){
+            if(arr[j] > arr[j+1]){
+                let tempVar = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1]  = tempVar;
+                noSwaps = false;
+            }
+        }
+        if(noSwaps) break;
+    }
+    return arr;
+}
+console.log(bubbleSort([8,1,2,3,4,5,6,7]));
+
+/* SELECTION SORT */
+let selectionSort = (arr) => {
+    for(let i=0; i<arr.length; i++){
+        let newMin = i;
+        for(let j=i+1; j<arr.length; j++){
+            if(arr[j] < arr[newMin]){
+                newMin = j;
+            }
+        }
+        if(i !== newMin){
+            // console.log(arr);
+            let temp = arr[i];
+            arr[i] = arr[newMin];
+            arr[newMin] = temp;
+        }
+        console.log(i,newMin); 
+    }
+    return arr;
+}
+console.log(selectionSort([8,5,2,1,3,5,4]));
+
+//  https://docs.google.com/forms/d/e/1FAIpQLSfBQBzAAhpTqxZ9nGz6Nbkf8wiSY6H78hK6vyfEuxw9zF-GHQ/viewform?usp=sf_link
+function hookupevents()
+ { for (var i = 0; i < 3; i++) {
+      document.getElementById("button" + i)
+        .addEventListener("click",  function() {
+                alert(i);
+                });
+            }
+    }
+
+// console.log(hookupevents());
+
+let printNumbers = () => {
+    for(let i=1; i<=100; i++){
+        if(i % 3 === 0){
+            console.log("Fizz", i);
+        }else if(i % 5 === 0){
+            console.log("Buzz", i);
+        }else if(i % 5 === 0 && i % 3 === 0){
+            console.log("FizzBuzz", i);            
+        }
+    }
+}
+// console.log(printNumbers());
+
+    /* SELECTION SORT */
+    let insertionSort = (arr) => {  
+        for (let i = 1; i < arr.length; i++) {
+            if(arr[i] < arr[0]){
+                console.log(arr.unshift(arr.splice(i,1)[0]));
+            }
+            else if(arr[i] > arr[i - 1]){
+                console.log(i);
+                continue;
+            }else {
+                // find where element should go
+                console.log(i); 
+                for(let j=1; j<i; j++){
+                    if(arr[i] > arr[j-1] && arr[i] < arr[j]){
+                        arr.splice(j,0,arr.splice(i,1)[0]);
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+    console.log(insertionSort([5, 4, 2, 7, 1, 6,3]));
+
+    /* MERGE SORT */
+    let mergeSortedArr = (arr1, arr2) => {
+        let  arr = [];
+        let i=0;
+        let j=0;
+        while(i < arr1.length && j<arr2.length){
+            if(arr1[i] < arr2[j]){
+                arr.push(arr1[i]);
+                i++;
+            }
+            else{
+                arr.push(arr2[j]); 
+                j++;
+            }
+        }
+        while(i<arr1.length){
+            arr.push(arr1[i]);
+            i++;
+        }
+        while(j<arr2.length){
+            arr.push(arr2[j]);
+            j++;
+        }
+        
+        return arr;
+    }
+    console.log(mergeSortedArr([1,3,10], [2,4,5, 20,30,80]));
+
+    let mergeSortAlgorithm = (arr) => {
+        if(arr.length <= 1) return arr;
+        let midpoint = Math.floor(arr.length/2);
+        let left = mergeSortAlgorithm(arr.slice(0,midpoint));
+        let right = mergeSortAlgorithm(arr.slice(midpoint));
+        return mergeSortedArr(left,right);
+    }
+    console.log(mergeSortAlgorithm([10,2,6,3,5,7,4,9,1]));
+
+    let fractions = (arr) => {
+        let posArr = [];
+        let negArr = [];
+        let zeroArr = [];
+        for(let i=0; i<arr.length; i++){
+            if(arr[i] < 0){
+                negArr.push(arr[i]);
+            }else if(arr[i] > 0){
+                posArr.push(arr[i]);
+            }else{
+                zeroArr.push(arr[i]);
+            }
+        }
+        let posFraction =  posArr.length/arr.length;
+        let negFraction= negArr.length/arr.length;
+        let zeroFraction = zeroArr.length/arr.length;
+        console.log(posFraction);
+        console.log(negFraction);
+        console.log(zeroFraction);
+    }
+    console.log(fractions([-4,3,-9,0,4,1]));
+
+    let diagonalDifference = (matrix) => {
+        let length = matrix.length;
+        let sum1 = 0;
+        let sum2 = 0;
+        console.log(matrix);
+        for(let i=0; i<matrix.length; i++){
+            console.log(matrix[length -1-i][i]);
+            sum1 += matrix[i][i];
+            sum2 +=matrix[length -1-i][i]; 
+        }
+        return Math.abs(sum1-sum2);
+    }
+    let matrix = [
+        [11,2,4],
+        [4,5,6],
+        [10,8,-12]
+    ]
+    console.log(diagonalDifference(matrix));
+
+    let printstaircase = (n) => {
+        let staircase = "";
+        let space = " ";
+        let hash = "#";
+        for(let i=1; i<=n; i++){
+            staircase += space.repeat(n-i) + hash.repeat(i)  + "\n";
+        }
+        return staircase;
+    }
+    console.log(printstaircase(6));
+
+/* QUICK SORT */
+
+    // let pivot = (arr,start, endIndex) => {  
+    //     let pivot = arr[start];
+    //     let pivotIndex = arr.indexOf(arr[0]);
+    //     for(let i = start + 1; i<arr.length; i++){
+    //         if(pivot > arr[i]){
+    //             pivotIndex++;
+    //             let temp = arr[i];
+    //             arr[i] = arr[pivotIndex];
+    //             arr[pivotIndex] = temp;
+    //             console.log(arr);
+    //         } 
+    //     }
+    //     let temp = arr[start];
+    //     arr[start] = arr[pivotIndex];
+    //     arr[pivotIndex] = temp;
+         
+    //     return arr;
+    // }
+    // console.log(pivot([5,2,1,8,4,7,6,3], 0, 7));
+
+    // Create an array to sort
+var array = [5,2,1,8,4,7,6,3];
+
+// Basic implementation (pivot is the first element of the array)
+function quicksort(array) {
+    if (array.length == 0) return [];
+
+    var left = [], right = [], pivot = array[0];
+
+    for (var i = 1; i < array.length; i++) {
+        if(array[i] < pivot){
+            left.push(array[i]);
+        }else{
+            right.push(array[i]);
+        }
+    }
+    return [...quicksort(left), pivot, ...quicksort(right)];
+    // return quicksort(left).concat(pivot, quicksort(right));
+}
+console.log(quicksort(array));
+    // let quickSort = (arr) => {
+    //     for(let i=0; i<arr.length; i++){
+
+    //     }
+    // }
+    // console.log(quickSort([5,2,6,8,2,10,
+
+    const arrayMinMaxSum = (arr) => {
+            let newArr = [...arr];
+            let sumsArr = []; 
+            let pos = 0;
+            let arraySum = (newArr) => {
+                console.log()
+            for (let i = 0; i < arr.length - 1; i++) {
+                if (arr.indexOf(arr[i]) !== i) {
+                    let numSum = 0;
+                    numSum += arr[i];
+                    sums.push(numSum);
+                }
+            } 
+        }        
+    }
+    console.log(arrayMinMaxSum([1,2,3,4,5]));
+
+
+    let objects = {
+        salad: 0,
+        meat:1,
+        cheese: 3,
+        bacon: 0
+    }
+    let a  = Object.keys(objects).map(obj => {
+        return [...Array(objects[obj])];
+    })
+    console.log(a);
+
+// ADD FOUR NUMBERS IN AN ARRAY OF 5 ELEMENTS AND PRINT OUT THEIR MIN AND MAX SUMS
+function miniMaxSum(arr) {
+    console.log(arr);
+    var sortedArr = arr.sort();
+    console.log(sortedArr);
+    var sum = sortedArr.reduce(function(sum, value) {
+        return sum + value;
+    }, 0);
+    console.log(sum);
+    console.log(sortedArr[4]);
+    console.log(sortedArr[0]);
+    return ((sum - sortedArr[4]) + ' ' + (sum - sortedArr[0]));
+
+}
+console.log(miniMaxSum([1,2,3,4,5]));
+
+// PRINT OUT EH MAX VALIUE FROM THE ARRAY AND BLOW IT THEN PRINT OUT THE NUMBER OF TIMES IT IS PRESENT ---- a BIRTHDAY SOMETHING
+function birthdayCakeCandles(ar) {
+let maxValue = Math.max(...ar);
+console.log(maxValue);
+let count=0;
+for(let i=0; i<ar.length; i++){
+     if(ar[i] === maxValue){
+          count +=1; 
+        } 
+    } 
+    return count; 
+}
+console.log(birthdayCakeCandles([3,1,2,3]));
+
+let convertTime = (str) => {
+    if(str.charAt(8) !== 'P' && str.charAt(8) !== "A") alert("Please specify if it\'s AM or PM");
+    let firstTwoCharacters = str.charAt(0) + str.charAt(1);
+     console.log(str);
+    if(str.charAt(8) === 'P'){
+        if(parseInt(firstTwoCharacters) === 12){
+            let changedFirstTwoChars = firstTwoCharacters;
+            let convertedTime = changedFirstTwoChars + ":" + str.charAt(3) + str.charAt(4) + ":" + str.charAt(6) + str.charAt(7);
+            return convertedTime;
+        }
+        if(firstTwoCharacters >= 1 && firstTwoCharacters < 12) {
+            let changedFirstTwoChars = 12 + parseInt(firstTwoCharacters);    
+            let convertedTime = changedFirstTwoChars + ":" + str.charAt(3) + str.charAt(4) + ":" + str.charAt(6) + str.charAt(7);
+            return convertedTime;
+        }
+    }
+    if(str.charAt(8) === 'A'){
+        if(parseInt(firstTwoCharacters) === 12){
+            let changedFirstTwoChars = "0" + 0;
+            let convertedTime = changedFirstTwoChars + ":" + str.charAt(3) + str.charAt(4) + ":" + str.charAt(6) + str.charAt(7);
+            return convertedTime;
+        }
+        if(parseInt(firstTwoCharacters) < 12){
+            let changedFirstTwoChars = firstTwoCharacters;
+            let convertedTime = changedFirstTwoChars + ":" + str.charAt(3) + str.charAt(4) + ":" + str.charAt(6) + str.charAt(7);
+            return convertedTime;
+        }
+    }
+
+
+}
+console.log(convertTime("12:45:54PM"));
+
+</script>
+</body>
+
+</html> 
