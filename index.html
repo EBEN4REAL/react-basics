@@ -63,7 +63,7 @@
         }
         // OR
         // {a: 0, n: 0, g: 0, r: 0, m: 0,s:1}
-        console.log(validAnagram('anagrams', 'nagaramn'));
+        console.log(validAnagram('anagrams', 'nagarams'));
         let validanagram = (str1, str2) => {
             if (str1.length !== str2.length) {
                 return false;
@@ -631,6 +631,8 @@ for(let i=0; i<ar.length; i++){
 }
 console.log(birthdayCakeCandles([3,1,2,3]));
 
+// TIME CONVERSION 
+
 let convertTime = (str) => {
     if(str.charAt(8) !== 'P' && str.charAt(8) !== "A") alert("Please specify if it\'s AM or PM");
     let firstTwoCharacters = str.charAt(0) + str.charAt(1);
@@ -664,6 +666,38 @@ let convertTime = (str) => {
 }
 console.log(convertTime("12:45:54PM"));
 
+// PALINDROME CODE
+
+let checkPalindrome = (str) => {
+    let arrChar1 = [];
+    let arrChar2 = [];  
+    let isTrue = null;
+    for(let i = 0; i < str.length; i++){
+        arrChar1.push(str[i]);
+    }
+    for(let j = str.length - 1; j>=0; j--){
+        arrChar2.push(str[j]);
+    }
+    for(let k = 0; k < arrChar1.length; k++){
+        if(arrChar1[k] === arrChar2[k]){
+            isTrue = true
+        }
+        else {
+            isTrue = false
+        }
+    }
+    return isTrue
+}
+console.log(checkPalindrome("racecar"));
+
+// /   ALTERNATIVE TO PALINDROME EXERCISE
+let isPalindrome =  (string) => {
+    if (string == string.split('').reverse().join('')) {
+        return true;
+    }
+     return false
+}
+console.log(isPalindrome("racecar"));
 </script>
 </body>
 

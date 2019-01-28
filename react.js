@@ -91,6 +91,7 @@ class  Form extends React.Component{
         contactDetails : null
     }
     onChangeHandler = (e, inputId) => {
+        console.log(e.target.value);
         const updatedForm = {...this.state.formDetails};
         updatedForm[inputId].value = e.target.value;
         this.setState({
@@ -106,7 +107,6 @@ class  Form extends React.Component{
             email: this.state.formDetails.email.value,
             country: this.state.formDetails.country.value
         }
-        console.log(formData);
         axios.post("https://reactburgerapp-cc275.firebaseio.com/contacts.json", formData)
             .then(res => {
                 console.log(res);
