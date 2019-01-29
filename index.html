@@ -516,8 +516,8 @@ let printNumbers = () => {
         let staircase = "";
         let space = " ";
         let hash = "#";
-        for(let i=1; i<=n; i++){
-            staircase += space.repeat(n-i) + hash.repeat(i)  + "\n";
+        for(let i=0; i<=n; i++){
+            staircase += space.repeat(n-i) + hash.repeat(i) + "\n";
         }
         return staircase;
     }
@@ -698,6 +698,47 @@ let isPalindrome =  (string) => {
      return false
 }
 console.log(isPalindrome("racecar"));
+
+//     COUNTING SORT 2 PROBLEM
+let countSort = (arr) => {
+    minVal = Math.min(...arr);
+    maxVal = Math.max(...arr);
+    let minMaxArr = [];
+    let arrFreqObj = {};
+    sumCountArr = [];
+
+    for(let i = minVal; i <= maxVal; i++){
+        minMaxArr.push(i);
+    }
+    console.log(minMaxArr);
+    for(let j=0; j<arr.length; j++){
+        let filterNum = arr.filter(element => element === arr[j]).length;
+        arrFreqObj[arr[j]] = filterNum;
+    }
+    let countArr = Array(minMaxArr.length);
+
+    for(let k = 0; k<minMaxArr.length; k++){
+        let indexVal = minMaxArr.indexOf(minMaxArr[k]);
+        countArr[indexVal] = arrFreqObj[minMaxArr[k]];
+    }
+    for(let l=0; l<countArr.length; l++){
+        if(countArr[l] === undefined) countArr[l] = 0;
+    }
+    let sumCountAr = countArr.reduce((sum, element) => {
+       return sum + element;
+    });
+    console.log(countArr);
+
+    sumCountArr.push(arrFreqObj[countArr[0]])
+    for(let m=1; m<countArr.length; m++){
+        let sum = countArr[m-1] + countArr[m];
+        sumCountArr.push(sum);
+    }
+    console.log(sumCountArr);
+    console.log(countArr);
+    console.log(arrFreqObj);
+}
+console.log(countSort([1,1,3,5,2,5]));
 </script>
 </body>
 
