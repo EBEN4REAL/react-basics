@@ -705,12 +705,11 @@ let countSort = (arr) => {
     maxVal = Math.max(...arr);
     let minMaxArr = [];
     let arrFreqObj = {};
-    sumCountArr = [];
+    let sumCountArr = [];
 
     for(let i = minVal; i <= maxVal; i++){
         minMaxArr.push(i);
     }
-    console.log(minMaxArr);
     for(let j=0; j<arr.length; j++){
         let filterNum = arr.filter(element => element === arr[j]).length;
         arrFreqObj[arr[j]] = filterNum;
@@ -724,18 +723,17 @@ let countSort = (arr) => {
     for(let l=0; l<countArr.length; l++){
         if(countArr[l] === undefined) countArr[l] = 0;
     }
-    let sumCountAr = countArr.reduce((sum, element) => {
-       return sum + element;
-    });
-    console.log(countArr);
-
-    sumCountArr.push(arrFreqObj[countArr[0]])
-    for(let m=1; m<countArr.length; m++){
-        let sum = countArr[m-1] + countArr[m];
-        sumCountArr.push(sum);
-    }
+    sumCountArr.push(2);
     console.log(sumCountArr);
+    for(let m=1; m<minMaxArr.length; m++){
+        let sum = sumCountArr[m] + countArr[m+1];
+        console.log(sum);
+        sumCountArr[m] = sum;
+    }
+
     console.log(countArr);
+    console.log(sumCountArr);
+    
     console.log(arrFreqObj);
 }
 console.log(countSort([1,1,3,5,2,5]));
