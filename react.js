@@ -37,7 +37,7 @@ class App extends React.Component{
         return (
             <div>
                 <Notification  {...Noti}  />
-                <Form formDetails={this.formDetails}/>
+                <Form />
             </div>
         )
     }
